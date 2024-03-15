@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="con">
+   <div class="cl">
+<h1>
+    currency convertor
+    </h1>
+<div>
+<img src="download (3).jpeg" alt="">
+</div>
+<div>
+  <div class="v">
+    <div>
+ <select name="" id="" class="currency">
+   
+ </select>
+ </div>
+ <div>
+ <input type="number" id="input" placeholder="input">
+ </div>
+ </div>
+ <div class="v">
+ <div>
+ <select name="" id="" class="currency">
+
+ </select>
+ </div>
+ <div>
+ <input type="number" id="result" placeholder="result">
+ </div>
+ </div>
+ <div>
+ <button id="btn">convert</button>
+ </div>
+</div>
+ </div>
+ <style>
+  body{
+    margin: 0;
+    padding: 0;
+     box-sizing: border-box;
+   
+    font-family:sans-serif;
+    outline: none;
+  }
+  h1{
+    color:aqua;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 20px;
+    background-color: azure;
+  }
+  img{
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+  }
+  .con{
+    height: 100vh;
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .cl{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+   
+  padding: 10px;
+    text-align: center;
+   border-radius: 20px;
+
+  }
+  
+  select{
+   
+    color: aqua;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    border: none;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+   
+  }
+  input{
+    
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: none;
+  }
+  button{
+     margin-top: 10px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     padding-right: 20px;
+     padding-left: 20px;
+     background-color: green;
+     color: white;
+     border: none;
+     border-radius: 10px;
+     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+   
+  }
+  @media screen and (max-width:700px) {
+    .v{
+      display: flex;
+      padding: 10px;
+    }
+    input{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: none;
+    width: 30vw;
+  }
+  h1{
+    border-radius: 20px;
+    background-color: azure;
+  }
+  img{
+    border-radius: 50%;
+  }
+  select{
+    width: 30vw;
+    color: aqua;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:5px;
+    margin: 5px;
+    border: none;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+   
+  }
+  }
+ </style>
+ <script>
+//   fetch('https://api.frankfurter.app/currencies') 
+//   let inp=document.getElementById("input")
+//   let res=document.getElementById("result")
+//   let btn=document.getElementById("btn")
+//   let select=document.querySelectorAll('.currency')
+//    fetch('https://api.frankfurter.app/currencies') 
+// .then(res=>res.json())
+// .then(res=>dd(res))
+// function dd(res){
+//     let curr=Object.entries(res)
+//     for(let i=0;i<curr.length;i++){
+//          let opt=`<option value="${curr[i][0]}">${curr[i][0]}</option>`
+//          select[0].innerHTML+=opt
+//          select[1].innerHTML+=opt
+//     }
+
+// }
+// btn.addEventListener('click',()=>{
+//   let curr1=select[0].value 
+//   let curr2=select[1].value 
+//   let inpval=inp.value
+//   if(curr1===curr2){
+//     alert("choose different currency")
+//   }
+//   else{
+//     convert(curr1,curr2,inpval)
+//   }
+// })
+// function convert(curr1,curr2,inpval){
+//   const host = 'api.frankfurter.app';
+// fetch(`https://${host}/latest?amount=${inpval}&from=${curr1}&to=${curr2}`)
+//   .then(resp => resp.json())
+//   .then((data) => {
+//    console.log(Object.values(data.rates)[0])
+//    document.getElementById("result").value=Object.values(data.rates)[0]
+//   });
+// }
+let inp=document.getElementById("input")
+let btn=document.getElementById("btn")
+let select=document.querySelectorAll('.currency')
+fetch('https://api.frankfurter.app/currencies')
+.then(res=>res.json())
+.then(res=>ddd(res))
+function ddd(res){
+  let curr=Object.entries(res)
+  for (let i = 0; i < curr.length; i++) {
+   let opt=`<option value="${curr[i][1]}">${curr[i][1]}</option>`
+     select[0].innerHTML+=opt
+     select[1].innerHTML+=opt
+  }
+}
+btn.addEventListener('click',()=>{
+  let curr1=select[0].value 
+  let curr2=select[1].value 
+  let inval=inp.value
+  if(curr1==curr2){
+    alert("choose different currency")
+  }
+  else{
+    convert(curr1,curr2,inval)
+  }
+})
+function convert(curr1,curr2,inval){
+  const host = 'api.frankfurter.app';
+fetch(`https://${host}/latest?amount=${inval}&from=${curr1}&to=${curr2}`)
+  .then(resp => resp.json())
+  .then((data) => {
+    document.getElementById('result').value=Object.values(data.rates)
+  });
+}
+ </script>
+</body>
+</html>
